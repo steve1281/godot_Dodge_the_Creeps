@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcp21s1ag6kmn"]
+
+[ext_resource type="Texture2D" uid="uid://cugfnjf0rthsb" path="res://art/enemyFlyingAlt_1.png" id="1_2jmv4"]
+[ext_resource type="Script" path="res://mob.gd" id="1_arj0x"]
+[ext_resource type="Texture2D" uid="uid://dhiwt08musqel" path="res://art/enemyFlyingAlt_2.png" id="2_gvpfw"]
+[ext_resource type="Texture2D" uid="uid://bgi05mv30hho" path="res://art/enemySwimming_1.png" id="3_wapst"]
+[ext_resource type="Texture2D" uid="uid://cjheh6y8g3ii6" path="res://art/enemySwimming_2.png" id="4_0v8cy"]
+[ext_resource type="Texture2D" uid="uid://dfpx3i62aldus" path="res://art/enemyWalking_1.png" id="5_j374q"]
+[ext_resource type="Texture2D" uid="uid://dbh61rujpcq6d" path="res://art/enemyWalking_2.png" id="6_peecl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_to76d"]
+radius = 12.0
+height = 34.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6sogc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2jmv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gvpfw")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wapst")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0v8cy")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_j374q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_peecl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_arj0x")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_to76d")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+enable_node_path = NodePath("../CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_6sogc")
+animation = &"swim"
