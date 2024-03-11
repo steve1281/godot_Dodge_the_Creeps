@@ -8,7 +8,6 @@ var screen_size # size of the game window
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
-	start(Vector2.ZERO)  # delete me, here to test only
 	
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
